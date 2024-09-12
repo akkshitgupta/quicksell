@@ -1,0 +1,15 @@
+.dropdown {
+  appearance: none;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+  padding: 2px 4px;
+  background: #ffffff;
+  border: 2px solid #ececec;
+  /* width: 120px; */
+  font-size: large;
+  font-weight: 500;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px 1px #eee;
+}

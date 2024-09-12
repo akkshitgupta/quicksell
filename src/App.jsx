@@ -1,9 +1,9 @@
-import "./App.css";
+import { Board } from "./components";
 
 function App() {
   return (
     <>
-      <h1>Quick Sell</h1>
+      <Board />
     </>
   );
 }
