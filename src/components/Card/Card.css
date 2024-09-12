@@ -18,23 +18,21 @@
 }
 
 .card-header img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
 .card-content {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .card-title {
-  font-size: 15px;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: 16px auto;
+  font-size: 13px;
   font-weight: 600;
-}
-
-.status {
-  width: 10%;
-  height: 10%;
 }
 
 .card-tags {
@@ -46,7 +44,8 @@
 .tag {
   color: #717173;
   border: solid #ccc;
-  padding: 4px 8px;
+  font-size: 14px;
+  padding: 2px 5px;
   border-radius: 8px;
   margin-right: 4px;
 }

@@ -6,11 +6,13 @@ export default function Card({ task }) {
     <div className="card">
       <div className="card-header">
         <p className="card-id">{task.id}</p>
-        <img src="user_image.jpg" alt="User Profile" />
+        <img src="user_image.jpg" alt={task.userId} />
       </div>
       <div className="card-content">
-        <img src={statusIcon(task.status)} alt="Status" className="status" />
-        <p className="card-title">{task.title}</p>
+        <div className="card-title">
+          <img src={statusIcon(task.status)} alt="Status" />
+          <span>{task.title}</span>
+        </div>
         <div className="card-tags">
           <img
             className="tag"
@@ -23,8 +25,6 @@ export default function Card({ task }) {
             </span>
           ))}
         </div>
-
-        {/* <p className="card-description">Feature Request</p> */}
       </div>
     </div>
   );

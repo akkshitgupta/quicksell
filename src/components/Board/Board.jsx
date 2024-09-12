@@ -1,6 +1,6 @@
 import DisplayIcon from "../../assets/Display.svg";
-import TasksLayout from "../TasksLayout/TasksLayout.jsx";
 import Dropdown from "../Dropdown/Dropdown.jsx";
+import TasksLayout from "../TasksLayout/TasksLayout.jsx";
 import "./board.css";
 
 export default function Board() {

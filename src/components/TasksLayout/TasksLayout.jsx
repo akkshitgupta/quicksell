@@ -1,11 +1,14 @@
-import Data from "../../../response.json";
 import { Card, GroupHeader } from "..";
+import Data from "../../../response.json"; // make the api call to fetch data
+import { groupTicketsByStatus } from "../../config/groupConf";
+import { statusIcon } from "../../config/icons";
 import "./TasksLayout.css";
 
 export default function TasksLayout() {
+  const group = groupTicketsByStatus(Data.tickets, "status");
   return (
     <div className="tasks-layout">
-      {/* {Object.keys(group)?.map((status, ind) => (
+      {Object.keys(group)?.map((status, ind) => (
         <div key={ind}>
           <GroupHeader
             icon={statusIcon(status)}
@@ -16,7 +19,7 @@ export default function TasksLayout() {
             <Card task={ticket} key={cardInd} />
           ))}
         </div>
-      ))} */}
+      ))}
     </div>
   );
 }
