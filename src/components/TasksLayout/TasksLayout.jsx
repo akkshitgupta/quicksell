@@ -1,19 +1,30 @@
 import { Card, GroupHeader } from "..";
-import Data from "../../../response.json"; // make the api call to fetch data
-import { groupTicketsByStatus } from "../../config/groupConf";
 import { statusIcon } from "../../config/icons";
+import groupBy from "../../config/groupBy";
+import useFetchApi from "../../config/useFetchApi";
 import "./TasksLayout.css";
+import { useEffect, useState } from "react";
 
 export default function TasksLayout() {
-  const group = groupTicketsByStatus(Data.tickets, "status");
-  return (
+  const { data } = useFetchApi();
+  const [group, setGroup] = useState(null);
+  useEffect(() => {
+    if (!data) return;
+    setGroup(groupBy(data.tickets, "status"));
+  }, [data]);
+
+  return !group ? (
+    <div className="loader-screen">
+      <span className="loader"></span>
+    </div>
+  ) : (
     <div className="tasks-layout">
-      {Object.keys(group)?.map((status, ind) => (
+      {Object.keys(group).map((status, ind) => (
         <div key={ind}>
           <GroupHeader
             icon={statusIcon(status)}
             title={status}
-            length={group[status].length}
+            length={group[status]?.length}
           />
           {group[status].map((ticket, cardInd) => (
             <Card task={ticket} key={cardInd} />
