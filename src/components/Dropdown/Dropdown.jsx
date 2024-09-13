@@ -2,8 +2,11 @@ import { useState } from "react";
 import { DownIcon } from "../../assets";
 import { useDisplay } from "../../contexts/DisplayContext";
 import "./Dropdown.css";
+import groupBy from "../../config/groupBy";
+import useFetchApi from "../../config/useFetchApi";
 
 export default function ComponentName({ children }) {
+  const { data } = useFetchApi(); // improve this repetitive api call
   const [modal, setModal] = useState(false);
   const { display, setDisplay } = useDisplay();
 
@@ -27,6 +30,7 @@ export default function ComponentName({ children }) {
               onChange={(e) => {
                 setDisplay((prev) => ({ ...prev, group: e.target.value }));
                 setModal((prev) => !prev);
+                groupBy(data.tickets, display.group);
               }}>
               <option value="status">Status</option>
               <option value="priority">Priority</option>
@@ -40,6 +44,7 @@ export default function ComponentName({ children }) {
               onChange={(e) => {
                 setDisplay((prev) => ({ ...prev, order: e.target.value }));
                 setModal((prev) => !prev);
+                groupBy(data.tickets, display.order);
               }}>
               <option value="priority">Priority</option>
               <option value="sort">Sort</option>

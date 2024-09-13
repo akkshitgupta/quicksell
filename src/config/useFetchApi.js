@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { useDisplay } from "../contexts/DisplayContext";
+import groupBy from "./groupBy";
 
 export default function useFetchApi() {
+  const { display } = useDisplay();
   const [data, setData] = useState(null);
+  const [group, setGroup] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -13,11 +17,14 @@ export default function useFetchApi() {
       },
     })
       .then((response) => response.json())
-      .then((result) => setData(result))
-      // .then((data) => setData(useGroup(data?.tickets, "status")))
+      .then((result) => {
+        setData(result);
+        return result;
+      })
+      .then((data) => setGroup(groupBy(data, display.group)))
       .catch((error) => console.log("error", error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [display]);
 
-  return { data, loading };
+  return { data, loading, group };
 }

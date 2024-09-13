@@ -28,9 +28,9 @@
 }
 
 .card-title {
-  display: grid;
-  gap: 4px;
-  grid-template-columns: 16px auto;
+  display: flex;
+  gap: 5px;
+  align-items: start;
   font-size: 13px;
   font-weight: 600;
 }
@@ -39,6 +39,11 @@
   margin-top: 15px;
   display: flex;
   align-items: center;
+}
+
+.card-tags img {
+  width: 12%;
+  height: auto;
 }
 
 .tag {
