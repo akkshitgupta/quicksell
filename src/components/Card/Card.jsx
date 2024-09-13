@@ -9,7 +9,7 @@ export default function Card({ task }) {
     <div className="card">
       <div className="card-header">
         <p className="card-id">{task.id}</p>
-        {display.group !== "user" && (
+        {display.group !== "users" && (
           <img src="user_image.jpg" alt={task.userId} />
         )}
       </div>
@@ -28,11 +28,11 @@ export default function Card({ task }) {
               alt="Priority"
             />
           )}
-          {/* {task.tag.map((tag, ind) => (
+          {task.tag.map((tag, ind) => (
             <span key={ind} className="tag">
               {tag}
             </span>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>

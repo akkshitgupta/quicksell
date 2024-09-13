@@ -8,50 +8,69 @@ export function groupByStatus(tickets) {
   };
 
   tickets.forEach((ticket) => {
-    const property = ticket.status;
+    const property = ticket["status"];
     group[property].push(ticket);
   });
 
   return group;
 }
+
+const priorityLabel = {
+  0: "No Priority",
+  1: "Low",
+  2: "Medium",
+  3: "High",
+  4: "Urgent",
+};
 
 export function groupByPriority(tickets) {
   const group = {
-    PriorityLow: [],
-    PriorityMedium: [],
-    PriorityHigh: [],
-    PriorityUrgent: [],
+    "No Priority": [],
+    Urgent: [],
+    High: [],
+    Medium: [],
+    Low: [],
   };
 
   tickets.forEach((ticket) => {
-    const property = ticket.priority;
+    const property = priorityLabel[ticket.priority];
     group[property].push(ticket);
   });
 
   return group;
 }
 
-export function groupByUsers(tickets) {
+export function groupByUsers(users, tickets) {
+  console.log(`inside the users function`);
+
   const group = {};
-  tickets.forEach((ticket) => {
-    const property = ticket.userID;
-    if (!group[property]) {
-      group[property] = [];
-    }
-    group[property].push(ticket);
+
+  users.forEach((user) => {
+    group[user.name] = [];
+
+    tickets.forEach((ticket) => {
+      if (ticket.userId === user.id) {
+        group[user.name].push(ticket);
+      }
+    });
   });
+
+  console.log({ group });
+
   return group;
 }
 
-export default function groupBy(tickets, criteria) {
+export default function groupBy(data, criteria) {
+  // console.log(tickets, { criteria });
+
   switch (criteria) {
     case "status":
-      return groupByStatus(tickets);
+      return groupByStatus(data.tickets);
     case "priority":
-      return groupByPriority(tickets);
+      return groupByPriority(data.tickets);
     case "users":
-      return groupByUsers(tickets);
+      return groupByUsers(data.users, data.tickets);
     default:
-      return tickets;
+      return data.tickets;
   }
 }

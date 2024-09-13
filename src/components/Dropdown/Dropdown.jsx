@@ -30,11 +30,11 @@ export default function ComponentName({ children }) {
               onChange={(e) => {
                 setDisplay((prev) => ({ ...prev, group: e.target.value }));
                 setModal((prev) => !prev);
-                groupBy(data.tickets, display.group);
+                groupBy(data, display.group);
               }}>
               <option value="status">Status</option>
               <option value="priority">Priority</option>
-              <option value="user">User</option>
+              <option value="users">User</option>
             </select>
 
             <label htmlFor="ordering">Ordering</label>
